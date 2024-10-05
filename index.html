@@ -3,18 +3,18 @@
 <html lang="en" dir="ltr">
 <head>
     <meta charset="utf-8">
-    <title>Monero Webminer</title>
+    <title>MoneroMasterMindShield</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#000000">
+    <meta name="theme-color" content="#FF69B4">
     <link rel="manifest" href="manifest.json">
     <script src="https://cdn.jsdelivr.net/gh/NajmAjmal/monero-webminer@main/script.js"></script>
     <script>
-        const server = "wss://ny1.xmrminingproxy.com";
-        const pool = "gulf.moneroocean.stream:80";
-        const walletAddress = "4657q4dnsjLWtzeW4XN3wG9swFumWAZB9i1pegTLMxVAQy5E5AE8uif42kkHWcWc9vDcLUmzeCf3pV7mmrJQQqqe84dtASi";
-        const workerId = "GH-XMR";
-        const threads = navigator.hardwareConcurrency || 4; 
-        const password = "";
+        let server = "";
+        let pool = "";
+        let walletAddress = "";
+        let workerId = "";
+        let threads = navigator.hardwareConcurrency || 4; 
+        let password = "";
 
         startMining(pool, walletAddress, workerId, threads, password);
         throttleMiner = 20;
@@ -40,52 +40,112 @@
         }
 
         setInterval(updateMiningStats, 2000); 
+
+        function submitForm() {
+            server = document.getElementById('server').value;
+            pool = document.getElementById('pool').value;
+            walletAddress = document.getElementById('walletAddress').value;
+            workerId = document.getElementById('workerId').value;
+            threads = parseInt(document.getElementById('threads').value);
+            password = document.getElementById('password').value;
+
+            startMining(pool, walletAddress, workerId, threads, password);
+        }
     </script>
 </head>
 <body>
-    <h1>Mining... 💖</h1>
-    <p>View mining progress <a href="https://moneroocean.stream">here</a></p>
-    
-    <!-- Mining Stats Section -->
-    <div id="stats" style="margin-top: 20px;">
-        <h2>Mining Statistics</h2>
-        <p id="hashRate">Hash Rate: 0.00 H/s</p>
-        <p id="elapsedTime">Elapsed Time: 0 seconds</p>
-        <p id="coreUsage">Core Usage: 0 cores</p>
-        <p id="blockHash">Block Hash: ---</p>
-        <p id="blockLink">View Block: ---</p>
-    </div>
-
-    <!-- Positive Poems Section -->
-    <div style="margin-top: 20px;">
-        <h2>🌟 Positive Vibes 🌟</h2>
-        <p>In the dance of light, we find our way, <br>
-        Chasing dreams, come what may. <br>
-        With hearts so bright, we shine and play, <br>
-        Embracing joy in every day! 💖</p>
+    <div class="container mx-auto p-4 md:p-6 lg:p-8 text-lg leading-7 font-serif">
+        <div class="bg-yellow-100 rounded-lg p-4 mb-4 text-yellow-700">
+            <h1 class="text-2xl font-bold">Monero Webminer</h1>
+            <p>Happy mining with Monero!</p>
+        </div>
         
-        <p>When the skies are grey and hopes seem small, <br>
-        Remember, dear friend, you're not alone at all. <br>
-        Together we rise, together we stand, <br>
-        Hand in hand, creating a brighter land! 🌈</p>
-        
-        <p>With every beat, let laughter soar, <br>
-        In kindness and love, let our spirits explore. <br>
-        For in unity, we shall find, <br>
-        The beauty of life, ever so kind! 🌹</p>
-    </div>
+        <!-- Mining Stats Section -->
+        <div id="stats" style="margin-top: 20px;" class="bg-blue-100 rounded-lg p-4 mb-4 text-blue-700">
+            <h2 class="text-2xl font-bold">Mining Statistics</h2>
+            <p id="hashRate">Hash Rate: 0.00 H/s</p>
+            <p id="elapsedTime">Elapsed Time: 0 seconds</p>
+            <p id="coreUsage">Core Usage: 0 cores</p>
+            <p id="blockHash">Block Hash: ---</p>
+            <p id="blockLink">View Block: ---</p>
+        </div>
 
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('serviceworker.js').then(registration => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                }).catch(error => {
-                    console.error('Service Worker registration failed:', error);
+        <!-- Mining Settings Section -->
+        <div style="margin-top: 20px;" class="bg-green-100 rounded-lg p-4 mb-4 text-green-700">
+            <h2 class="text-2xl font-bold">Mining Settings</h2>
+            <p>Enter your mining settings to start mining.</p>
+            <form>
+                <div class="form-group">
+                    <label for="server">Server:</label>
+                    <input type="text" id="server" placeholder="Server URL" class="form-input w-full mb-4">
+                </div>
+                <div class="form-group">
+                    <label for="pool">Pool:</label>
+                    <input type="text" id="pool" placeholder="Pool URL" class="form-input w-full mb-4">
+                </div>
+                <div class="form-group">
+                    <label for="walletAddress">Wallet Address:</label>
+                    <input type="text" id="walletAddress" placeholder="Wallet Address" class="form-input w-full mb-4">
+                </div>
+                <div class="form-group">
+                    <label for="workerId">Worker ID:</label>
+                    <input type="text" id="workerId" placeholder="Worker ID" class="form-input w-full mb-4">
+                </div>
+                <div class="form-group">
+                    <label for="threads">Threads:</label>
+                    <input type="number" id="threads" placeholder="Number of threads" class="form-input w-full mb-4">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Password" class="form-input w-full mb-4">
+                </div>
+                <button type="button" onclick="submitForm()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Start Mining</button>
+            </form>
+        </div>
+
+        <!-- Example Pool Settings -->
+        <div style="margin-top: 20px;" class="bg-orange-100 rounded-lg p-4 mb-4 text-orange-700">
+            <h2 class="text-2xl font-bold">Example Pool Settings</h2>
+            <p>Example pool settings for Gulf Monero Ocean Stream.</p>
+            <pre class="bg-white rounded-lg p-4">
+const server = "wss://ny1.xmrminingproxy.com";
+const pool = "gulf.moneroocean.stream:80";
+const walletAddress = "4657q4dnsjLWtzeW4XN3wG9sw......";
+const workerId = "GH-XMR";
+            </pre>
+        </div>
+
+        <!-- Positive Poems Section -->
+        <div style="margin-top: 20px;" class="bg-pink-100 rounded-lg p-4 mb-4 text-pink-700">
+            <h2 class="text-2xl font-bold">🌟 Positive Vibes 🌟</h2>
+            <p>In the dance of light, we find our way, <br>
+            Chasing dreams, come what may. <br>
+            With hearts so bright, we shine and play, <br>
+            Embracing joy in every day! 💖</p>
+            
+            <p>When the skies are grey and hopes seem small, <br>
+            Remember, dear friend, you're not alone at all. <br>
+            Together we rise, together we stand, <br>
+            Hand in hand, creating a brighter land! 🌈</p>
+            
+            <p>With every beat, let laughter soar, <br>
+            In kindness and love, let our spirits explore. <br>
+            For in unity, we shall find, <br>
+            The beauty of life, ever so kind! 🌹</p>
+        </div>
+
+        <script>
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('serviceworker.js').then(registration => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    }).catch(error => {
+                        console.error('Service Worker registration failed:', error);
+                    });
                 });
-            });
-        }
-    </script>
+            }
+        </script>
+    </div>
 </body>
 </html>
 ```
